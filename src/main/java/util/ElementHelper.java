@@ -4,39 +4,91 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Arrays;
 
 public class ElementHelper {
     AppiumDriver appiumDriver;
     WebDriverWait webDriverWait;
     Actions action;
 
-    public ElementHelper(AppiumDriver appiumDriver){
+    public ElementHelper(AppiumDriver appiumDriver) {
         this.appiumDriver = appiumDriver;
         this.webDriverWait = new WebDriverWait(appiumDriver, Duration.ofSeconds(10));
         this.action = new Actions(appiumDriver);
     }
 
-    public WebElement presenceElement(By key){
+    public WebElement presenceElement(By key) {
         return webDriverWait.until(ExpectedConditions.presenceOfElementLocated(key));
     }
 
-    public WebElement findElement (By key){
+    public WebElement findElement(By key) {
         WebElement webElement = presenceElement(key);
         return webElement;
     }
-    public void click (By key){
+
+    public void click(By key) {
         findElement(key).click();
     }
-    public void sendKey(By key, String text){
+
+    public void sendKey(By key, String text) {
         findElement(key).sendKeys(text);
     }
-    public void checkVisible(By key){
+
+    public void checkVisible(By key) {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(key));
     }
 
+    public void swipeLeft(By key) {
 
+        WebElement element = findElement(key);
+
+        int centerY = element.getRect().y + (element.getSize().height / 2);
+        double startX = element.getRect().x + (element.getSize().width * 0.9);
+        double endX = element.getRect().x + (element.getSize().width * 0.1);
+
+        //Type of pointer input
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        //Create sequence object to add actions
+        Sequence swipe = new Sequence(finger, 1);
+        //Move finger into starting position
+        swipe.addAction(finger.createPointerMove(Duration.ofSeconds(0), PointerInput.Origin.viewport(), (int) startX, centerY));
+        //Finger comes down into contact with screen
+        swipe.addAction(finger.createPointerDown(0));
+        //Finger moves to en position
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(700), PointerInput.Origin.viewport(), (int) endX, centerY));
+        //Get up finger from screen
+        swipe.addAction(finger.createPointerUp(0));
+        //Perform the action
+        appiumDriver.perform(Arrays.asList(swipe));
+    }
+
+    public void scrollDown(By key){
+
+        WebElement element = findElement(key);
+
+        int centerX = element.getRect().x + (element.getSize().width / 2);
+        double startY = element.getRect().y + (element.getSize().height * 0.9);
+        double endY = element.getRect().y + (element.getSize().height * 0.1);
+
+        //Type of pointer input
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH,"finger");
+        //Creating Sequence object to add actions
+        Sequence swipe = new Sequence(finger,1);
+        //Move finger into starting position
+        swipe.addAction(finger.createPointerMove(Duration.ofSeconds(0),PointerInput.Origin.viewport(), centerX,(int)startY));
+        //Finger comes down into contact with screen
+        swipe.addAction(finger.createPointerDown(0));
+        //Finger moves to end position
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(700), PointerInput.Origin.viewport(), centerX, (int)endY));
+        //Get up Finger from Screen
+        swipe.addAction(finger.createPointerUp(0));
+        //Perform the action
+        appiumDriver.perform(Arrays.asList(swipe));
+    }
 }
