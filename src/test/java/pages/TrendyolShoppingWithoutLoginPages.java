@@ -1,5 +1,6 @@
 package pages;
 
+import enums.SwipeEnum;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
@@ -47,7 +48,7 @@ public class TrendyolShoppingWithoutLoginPages {
                 break;
             }
             else
-                elementHelper.swipeLeft(swipeMenu);
+                elementHelper.swipe(swipeMenu, SwipeEnum.LEFT);
         }
     }
 
@@ -61,7 +62,7 @@ public class TrendyolShoppingWithoutLoginPages {
 
     public void scrollDownAndClickToSecondProduct() {
         appiumDriver.findElement(toolTipClose).click();
-        elementHelper.scrollDown(scrollMenu);
+        elementHelper.swipe(scrollMenu, SwipeEnum.DOWN);
         List<WebElement> productList = appiumDriver.findElements(iOSProductList);
         productList.get(2).click();
     }
