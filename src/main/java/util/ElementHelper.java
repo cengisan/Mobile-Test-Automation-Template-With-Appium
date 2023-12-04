@@ -17,7 +17,6 @@ public class ElementHelper {
     AppiumDriver appiumDriver;
     WebDriverWait webDriverWait;
     Actions action;
-    SwipeEnum swipeEnum;
 
     public ElementHelper(AppiumDriver appiumDriver) {
         this.appiumDriver = appiumDriver;
