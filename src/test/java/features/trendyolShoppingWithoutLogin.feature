@@ -1,4 +1,4 @@
-@TrendyolLogin
+@trendyolShoppingWithoutLogin
 Feature: Trendyol Shopping without login Test Case
 
   Scenario Outline: Add a phone in the cart and check the cart notification

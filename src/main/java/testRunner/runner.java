@@ -8,7 +8,7 @@ import util.DriverFactory;
 @CucumberOptions(
         features = {"src/test/java/features"},
         glue = {"stepDefinitions", "util"},
-        tags = "@TrendyolLogin",
+        tags = "",
         plugin = {
                 "summary", "pretty", "html:reports/cucumberReport/Report.html"
         }

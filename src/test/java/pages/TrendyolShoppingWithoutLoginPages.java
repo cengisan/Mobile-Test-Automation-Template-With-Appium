@@ -10,12 +10,12 @@ import util.ElementHelper;
 import java.time.Duration;
 import java.util.List;
 
-public class TrendyolLoginPage {
+public class TrendyolShoppingWithoutLoginPages {
 
     AppiumDriver appiumDriver;
     WebDriverWait webDriverWait;
     ElementHelper elementHelper;
-    public TrendyolLoginPage(AppiumDriver appiumDriver) {
+    public TrendyolShoppingWithoutLoginPages(AppiumDriver appiumDriver) {
         this.appiumDriver = appiumDriver;
         this.webDriverWait = new WebDriverWait(appiumDriver, Duration.ofSeconds(10));
         this.elementHelper = new ElementHelper(appiumDriver);

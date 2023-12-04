@@ -2,13 +2,12 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.TrendyolLoginPage;
+import pages.TrendyolShoppingWithoutLoginPages;
 import util.DriverFactory;
 
-public class TrendyolLoginStepDefinitions {
+public class TrendyolShoppingWithoutLoginStepDefinitions {
 
-    TrendyolLoginPage trendyolLoginPage = new TrendyolLoginPage(DriverFactory.getAppiumDriver());
-
+    TrendyolShoppingWithoutLoginPages trendyolLoginPage = new TrendyolShoppingWithoutLoginPages(DriverFactory.getAppiumDriver());
 
     @When("Click to Men select box")
     public void clickToMenSelectBox() {
