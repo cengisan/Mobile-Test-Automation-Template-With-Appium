@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Arrays;
+import java.util.List;
 
 public class ElementHelper {
     AppiumDriver appiumDriver;
@@ -29,8 +29,7 @@ public class ElementHelper {
     }
 
     public WebElement findElement(By key) {
-        WebElement webElement = presenceElement(key);
-        return webElement;
+        return presenceElement(key);
     }
 
     public void click(By key) {
@@ -66,7 +65,7 @@ public class ElementHelper {
             //Get up finger from screen
             swipe.addAction(finger.createPointerUp(0));
             //Perform the action
-            appiumDriver.perform(Arrays.asList(swipe));
+            appiumDriver.perform(List.of(swipe));
 
         } else if (direction.equals(SwipeEnum.RIGHT)) {
             int centerY = element.getRect().y + (element.getSize().height / 2);
@@ -78,7 +77,7 @@ public class ElementHelper {
             swipe.addAction(finger.createPointerDown(0));
             swipe.addAction(finger.createPointerMove(Duration.ofMillis(700), PointerInput.Origin.viewport(), (int) endX, centerY));
             swipe.addAction(finger.createPointerUp(0));
-            appiumDriver.perform(Arrays.asList(swipe));
+            appiumDriver.perform(List.of(swipe));
         } else if (direction.equals(SwipeEnum.UP)) {
             int centerX = element.getRect().x + (element.getSize().width / 2);
             double startY = element.getRect().y + (element.getSize().height * 0.1);
@@ -89,7 +88,7 @@ public class ElementHelper {
             swipe.addAction(finger.createPointerDown(0));
             swipe.addAction(finger.createPointerMove(Duration.ofMillis(700), PointerInput.Origin.viewport(), centerX, (int)endY));
             swipe.addAction(finger.createPointerUp(0));
-            appiumDriver.perform(Arrays.asList(swipe));
+            appiumDriver.perform(List.of(swipe));
         } else if (direction.equals(SwipeEnum.DOWN)) {
             int centerX = element.getRect().x + (element.getSize().width / 2);
             double startY = element.getRect().y + (element.getSize().height * 0.9);
@@ -100,7 +99,7 @@ public class ElementHelper {
             swipe.addAction(finger.createPointerDown(0));
             swipe.addAction(finger.createPointerMove(Duration.ofMillis(700), PointerInput.Origin.viewport(), centerX, (int)endY));
             swipe.addAction(finger.createPointerUp(0));
-            appiumDriver.perform(Arrays.asList(swipe));
+            appiumDriver.perform(List.of(swipe));
         } else {
             throw new RuntimeException("There is no direction as " + direction);
         }

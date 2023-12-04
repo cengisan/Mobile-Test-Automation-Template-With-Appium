@@ -42,12 +42,11 @@ public class TrendyolShoppingWithoutLoginPages {
     public void clickToElectronicCategoryIconFromMenu() {
         appiumDriver.findElement(toolTipClose).click();
         List<WebElement> elementTexts = appiumDriver.findElements(menuElementsTexts);
-        for (int i = 0; i < elementTexts.size(); i++){
-            if (elementTexts.get(i).getText().equals("Elektronik")) {
+        for (WebElement elementText : elementTexts) {
+            if (elementText.getText().equals("Elektronik")) {
                 appiumDriver.findElement(electronicCategoryIcon).click();
                 break;
-            }
-            else
+            } else
                 elementHelper.swipe(swipeMenu, SwipeEnum.LEFT);
         }
     }
